@@ -26,5 +26,3 @@ app.listen(process.env.PORT, () => {
 // Model(done) -> Controllers(done) -> Routes(done) -> server.js(done)
 
 
-// Flow
-// DB -> Server -> Frontend

@@ -15,7 +15,7 @@ const productSchema = new mongoose.Schema({
         type: Number 
     },
     imageURL: {
-        type: String
+        type: String  // "uploads/image1/jpg"
     }
 }, {
     timestamps: true

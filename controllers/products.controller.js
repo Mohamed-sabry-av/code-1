@@ -76,7 +76,8 @@ exports.updateProduct = async (req, res) => {
 
         res.status(200).json({
             status: "Updated"
-        })
+        }) // stock -1 
+        // stock + 500
     } catch (err) {
         res.status(404).json({
             status: "Error",

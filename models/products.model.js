@@ -12,7 +12,7 @@ const productSchema = new mongoose.Schema({
         required: true
     },
     stock: {
-        type: Number
+        type: Number 
     }
 }, {
     timestamps: true

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const bcrypt = require("bcryptjs")
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -19,4 +20,12 @@ const userSchema = new mongoose.Schema({
     }
 }, { timestamp: true })
 
+userSchema.methods.comparePassword = async function (candidatePassword) {
+    return bcrypt.compare(candidatePassword, this.password) //true , false
+}
+
 module.exports = mongoose.model("User", userSchema)
+
+
+// Bank
+// one place <- secure / no one can see it 

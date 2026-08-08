@@ -8,10 +8,21 @@ const userRouter = require("./routes/user.route");
 const authRouter = require("./routes/auth.route");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const helmet = require("helmet");
+const cors = require("cors");
+const { globalLimiter } = require("./middelwares/rateLimit.middleware");
 
 // middlewares
+app.use(globalLimiter);
 app.use(express.json());
+app.use(helmet());
+app.use(
+  cors({
+    origin: ["http://localhost:4200", "*"],
+  }),
+);
 app.use(cookieParser());
+
 
 // routes
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));

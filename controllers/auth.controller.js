@@ -77,8 +77,8 @@ exports.login = async (req, res) => {
       });
     }
 
-    const token = generateAccessToken(user._id);
-    const RefreshToken = generateRefreshToken(user._id);
+    const token = generateAccessToken(user._id); //key
+    const RefreshToken = generateRefreshToken(user._id); // passport
 
     user.refreshToken = RefreshToken;
     await user.save();

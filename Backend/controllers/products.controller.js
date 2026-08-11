@@ -90,4 +90,3 @@ exports.updateProduct = async (req, res) => {
     });
   }
 };
-

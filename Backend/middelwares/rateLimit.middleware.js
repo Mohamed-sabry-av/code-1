@@ -2,7 +2,7 @@ const rateLimit = require("express-rate-limit");
 
 //Limit global API
 exports.globalLimiter = rateLimit({
-  windowMS: 15 * 60 * 1000,
+  windowMs: 15 * 60 * 1000,
   limit: 100,
   message: {
     status: "Failed",
@@ -12,7 +12,7 @@ exports.globalLimiter = rateLimit({
 });
 
 exports.loginLimiter = rateLimit({
-  windowMS: 15 * 60 * 1000,
+  windowMs: 15 * 60 * 1000,
   limit: 5,
   message: {
     status: "Failed",

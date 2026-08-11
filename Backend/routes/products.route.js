@@ -17,7 +17,8 @@ router.post(
   upload.single("imageURL"),
   createProduct,
 );
-router.get("/", protect, getProducts);
+// router.get("/", protect, getProducts);
+router.get("/", getProducts);
 router.get("/:id", getProductById);
 router.delete("/:id", protect, restrectTo("admin"), deleteProduct);
 router.put("/:id", protect, restrectTo("admin"), updateProduct);

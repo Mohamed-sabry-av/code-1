@@ -69,6 +69,7 @@ exports.login = async (req, res) => {
     }
 
     const user = await User.findOne({ email });
+    console.log(user);
 
     if (!user || !(await user.comparePassword(password))) {
       return res.status(401).json({

@@ -17,7 +17,7 @@
 
       <!-- Product Card -->
 
-      @for(product of products ; track product._id){
+      @for(product of products() ; track product._id){
       <app-product-card [product]="product"></app-product-card>
       }
 

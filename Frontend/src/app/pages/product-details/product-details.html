@@ -1,1 +1,132 @@
-<p>product-details works!</p>
+<section class="bg-gray-50 min-h-screen py-12">
+  <div class="max-w-7xl mx-auto px-6">
+
+    @if(product(); as product){
+    <!-- Product -->
+    <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 p-6 md:p-10">
+
+        <!-- Product Image -->
+        <div>
+          <div class="bg-gray-100 rounded-xl overflow-hidden">
+            <img [src]="'http://localhost:3000' + product.imageURL" [alt]="product.title"
+              class="w-full h-[500px] object-cover">
+          </div>
+
+        </div>
+
+        <!-- Product Information -->
+        <div class="flex flex-col justify-center">
+
+          <!-- Title -->
+          <h1 class="text-4xl font-bold text-gray-900 mt-3">
+            <!-- Uppercase PIPE -->
+            {{product.title | uppercase }}
+          </h1>
+
+
+
+          <!-- Price -->
+          <div class="mt-6">
+            <span class="text-4xl font-bold text-gray-900">
+              ${{product.price}}
+            </span>
+
+            <!-- <span class="text-lg text-gray-400 line-through ml-3">
+              $129.99
+            </span> -->
+
+            <!-- <span class="ml-3 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+              23% OFF
+            </span> -->
+          </div>
+
+          <!-- Description -->
+          <p class="text-gray-600 leading-7 mt-6">
+            {{product.desc | truncate : 170}}
+          </p>
+
+          <!-- Stock -->
+          <div class="mt-6">
+            <span class="text-green-600 font-medium">
+              <!-- @if(product.stock > 1){
+              ✓ In Stock
+              }@else{
+              <span class="text-red-600">
+                ✗ Out of Stock
+              </span>
+              } -->
+            </span>
+          </div>
+
+          <!-- Quantity -->
+          <div class="flex items-center gap-4 mt-6">
+
+            <span class="font-medium text-gray-800">
+              Quantity:
+            </span>
+
+            <div class="flex items-center border border-gray-300 rounded-lg">
+
+              <button class="px-4 py-2 text-lg hover:bg-gray-100">
+                -
+              </button>
+
+              <span class="px-5 py-2 border-x border-gray-300">
+                1
+              </span>
+
+              <button class="px-4 py-2 text-lg hover:bg-gray-100">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- Buttons -->
+          <div class="flex gap-4 mt-8">
+
+            <button class="flex-1 bg-blue-600 text-white py-3 px-6 rounded-lg
+                     font-medium hover:bg-blue-700 transition">
+              Add to Cart
+            </button>
+
+
+          </div>
+
+          <!-- Features -->
+          <div class="grid grid-cols-2 gap-4 mt-8 pt-8 border-t">
+
+            <div>
+              <p class="font-semibold text-gray-800">
+                🚚 Free Shipping
+              </p>
+              <p class="text-sm text-gray-500 mt-1">
+                On orders over $50
+              </p>
+            </div>
+
+            <div>
+              <p class="font-semibold text-gray-800">
+                🔄 Easy Returns
+              </p>
+              <p class="text-sm text-gray-500 mt-1">
+                30 days return policy
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+    }
+
+  </div>
+</section>

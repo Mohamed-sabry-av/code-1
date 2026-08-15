@@ -15,14 +15,17 @@ const { globalLimiter } = require("./middelwares/rateLimit.middleware");
 // middlewares
 app.use(globalLimiter);
 app.use(express.json());
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  }),
+);
 app.use(
   cors({
     origin: ["http://localhost:4200", "*"],
   }),
 );
 app.use(cookieParser());
-
 
 // routes
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));

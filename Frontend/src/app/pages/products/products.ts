@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ProductCard } from '../../shared/components/product-card/product-card';
 import { Product } from '../../shared/models/product.model';
 import { ProductService } from '../../services/product';
@@ -10,11 +10,12 @@ import { ProductService } from '../../services/product';
   styleUrl: './products.css',
 })
 export class Products {
-  products: Product[] = [];
+  products = signal<Product[]>([]);
+
   constructor(private productService: ProductService) {
     this.productService.getAllProducts().subscribe((response) => {
-      console.log(response.products);
-      this.products = response.products;
+      console.log(response)
+      this.products.set(response.products);
     });
   }
 }

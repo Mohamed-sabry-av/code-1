@@ -2,16 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { computed, Injectable, signal } from '@angular/core';
 import { Enviroment } from '../enviroments/enivroments';
 import { USER } from '../shared/models/user.model';
-import { tap } from 'rxjs';
+import { finalize, tap } from 'rxjs';
+import { USERAUTH } from '../shared/models/auth';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private baseUrl = Enviroment.BASE_URL + '/auth';  //http://localhost:3000/auth
+  private baseUrl = Enviroment.BASE_URL + '/auth';
 
   acessToken = signal<string | null>(localStorage.getItem('accessToken'));
   user = signal<USER | null>(JSON.parse(localStorage.getItem('user') ?? 'null'));
 
-  //   isLoggedIn = computed(() => !!this.acessToken());
+  isLoggedIn = computed(() => !!this.acessToken());
   //   isAdmin = computed(() => this.user()?.role === 'admin');
 
   constructor(private _http: HttpClient) {}
@@ -23,8 +24,15 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  login(email: string, password: string) { 
-    return this._http.post<any>(`${this.baseUrl}/login`, { email, password }, { withCredentials: true }).pipe(
+  private clearSession() {
+    this.acessToken.set(null);
+    this.user.set(null);
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('user');
+  }
+
+  login(data: USERAUTH) {
+    return this._http.post<any>(`${this.baseUrl}/login`, data, { withCredentials: true }).pipe(
       tap((response) => {
         this.setSession(response.data.token, {
           email: response.data.email,
@@ -32,5 +40,15 @@ export class AuthService {
         });
       }),
     );
+  }
+
+  logout() {
+    return this._http
+      .post<any>(`${this.baseUrl}/logout`, {}, { withCredentials: true })
+      .pipe(finalize(() => this.clearSession())); // finalize why and not Tap
+  }
+
+  signup(data: USERAUTH) {
+    return this._http.post<any>(`${Enviroment.BASE_URL}/user`, data);
   }
 }

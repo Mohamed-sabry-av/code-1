@@ -1,16 +1,22 @@
 import { Component, computed, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { Signup } from '../signup/signup';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink, Signup],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
-  constructor(private authService: AuthService, private router:Router) {}
+  errorMessage = signal('');
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {}
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -24,9 +30,10 @@ export class Login {
     }
     const { email, password } = this.loginForm.value;
     
-    this.authService.login(email!,password!).subscribe({
-      next:()=> this.router.navigate(['/']),
-      error:(err)=> console.error(err.message)
-    })
+
+    this.authService.login({ email: email!, password: password! }).subscribe({
+      next: () => this.router.navigate(['/']),
+      error: (err) => this.errorMessage.set(err.error?.message ?? 'login Failed'),
+    });
   }
 }

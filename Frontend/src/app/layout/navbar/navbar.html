@@ -22,15 +22,25 @@
       <!-- Auth Buttons -->
       <div class="flex items-center gap-3">
 
+        @if(authService.isLoggedIn()){
+          <span class="text-gray-700 border border-gray-300 px-3 py-1 rounded-lg">
+            {{authService.user()?.email}}
+          </span>
+          <button (click)="logout()" class="px-5 py-2 rounded-lg border border-blue-600 text-blue-600
+          hover:bg-blue-600 hover:text-white transition">
+          Logout
+        </button>
+        }@else{
         <a routerLink="/login" class="px-5 py-2 rounded-lg border border-blue-600 text-blue-600
-                 hover:bg-blue-600 hover:text-white transition">
+          hover:bg-blue-600 hover:text-white transition">
           Login
         </a>
 
         <a routerLink="/signup" class="px-5 py-2 rounded-lg bg-blue-600 text-white
-                 hover:bg-blue-700 transition">
+        hover:bg-blue-700 transition">
           Sign Up
         </a>
+        }
 
       </div>
 

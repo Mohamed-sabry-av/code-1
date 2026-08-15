@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {Enviroment} from '../enviroments/enivroments'
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  private baseUrl = 'http://localhost:3000/product';
+  private baseUrl = Enviroment.BASE_URL + `/product`;
 
   constructor(private _http: HttpClient) {}
 

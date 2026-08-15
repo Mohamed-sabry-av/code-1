@@ -13,6 +13,10 @@
             </p>
         </div>
 
+        @if(errorMessage()){
+        <p class="text-red-600 text-sm text-center mb-4 bg-red-50 py-2 rounded-lg">{{errorMessage()}}</p>
+        }
+
         <!-- Login Form -->
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
@@ -79,7 +83,7 @@
         <!-- Register -->
         <p class="text-center text-sm text-gray-500 mt-6">
             Don't have an account?
-            <a href="#" class="text-blue-600 font-medium hover:text-blue-700">
+            <a routerLink="/signup" class="text-blue-600 font-medium hover:text-blue-700">
                 Sign up
             </a>
         </p>

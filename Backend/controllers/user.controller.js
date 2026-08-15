@@ -43,3 +43,59 @@ exports.getUserById = async (req, res) => {
         })
     }
 }
+
+exports.getAllUsers = async (req, res) => {
+    try {
+        const users = await User.find().select("-password -refreshToken")
+
+        res.status(200).json({
+            status: "sucess",
+            users
+        })
+    } catch (err) {
+        res.status(406).json({
+            message: "Failed to get users",
+            ErrMessage: err.message
+        })
+    }
+}
+
+exports.updateUserRole = async (req, res) => {
+    try {
+        const id = req.params.id
+        const { role } = req.body
+
+        const updatedUser = await User.findByIdAndUpdate(
+            id,
+            { role },
+            { new: true, runValidators: true }
+        ).select("-password -refreshToken")
+
+        res.status(200).json({
+            status: "sucess",
+            data: updatedUser
+        })
+    } catch (err) {
+        res.status(406).json({
+            message: "Failed to update user",
+            ErrMessage: err.message
+        })
+    }
+}
+
+exports.deleteUser = async (req, res) => {
+    try {
+        const id = req.params.id
+        const deletedUser = await User.findByIdAndDelete(id)
+
+        res.status(200).json({
+            status: "sucess",
+            data: deletedUser
+        })
+    } catch (err) {
+        res.status(406).json({
+            message: "Failed to delete user",
+            ErrMessage: err.message
+        })
+    }
+}

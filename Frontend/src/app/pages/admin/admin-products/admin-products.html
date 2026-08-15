@@ -1,0 +1,44 @@
+<section class="max-w-6xl mx-auto px-6 py-10">
+
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Manage Products</h1>
+        <a routerLink="/admin/products/new" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+            + New Product
+        </a>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+        <table class="w-full text-left">
+            <thead class="bg-gray-50 text-gray-500 text-sm">
+                <tr>
+                    <th class="px-5 py-3">Image</th>
+                    <th class="px-5 py-3">Title</th>
+                    <th class="px-5 py-3">Price</th>
+                    <th class="px-5 py-3">Stock</th>
+                    <th class="px-5 py-3 text-right">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(product of products(); track product._id){
+                <tr class="border-t border-gray-100">
+                    <td class="px-5 py-3">
+                        @if(product.imageURL){
+                        <img [src]="'http://localhost:3000' + product.imageURL" class="w-12 h-12 object-cover rounded-lg">
+                        }@else{
+                        <div class="w-12 h-12 rounded-lg bg-gray-100"></div>
+                        }
+                    </td>
+                    <td class="px-5 py-3">{{product.title}}</td>
+                    <td class="px-5 py-3">${{product.price}}</td>
+                    <td class="px-5 py-3">{{product.stock}}</td>
+                    <td class="px-5 py-3 text-right space-x-3">
+                        <a [routerLink]="['/admin/products', product._id, 'edit']" class="text-blue-600 hover:underline">Edit</a>
+                        <button (click)="onDelete(product._id!)" class="text-red-600 hover:underline">Delete</button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</section>

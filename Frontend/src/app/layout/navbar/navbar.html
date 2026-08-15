@@ -17,11 +17,24 @@
         <a routerLink="/products" routerLinkActive="active" class="text-gray-700 hover:text-blue-600 transition">
           Products
         </a>
+
+        @if(authService.isAdmin()){
+        <a routerLink="/admin/products" routerLinkActive="active" class="text-gray-700 hover:text-blue-600 transition">
+          Admin
+        </a>
+        }
       </div>
 
       <!-- Auth Buttons -->
       <div class="flex items-center gap-3">
 
+        @if(authService.isLoggedIn()){
+        <span class="text-sm text-gray-500">{{authService.user()?.email}}</span>
+        <button (click)="logout()" class="px-5 py-2 rounded-lg border border-blue-600 text-blue-600
+                 hover:bg-blue-600 hover:text-white transition">
+          Logout
+        </button>
+        }@else{
         <a routerLink="/login" class="px-5 py-2 rounded-lg border border-blue-600 text-blue-600
                  hover:bg-blue-600 hover:text-white transition">
           Login
@@ -31,6 +44,7 @@
                  hover:bg-blue-700 transition">
           Sign Up
         </a>
+        }
 
       </div>
 

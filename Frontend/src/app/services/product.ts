@@ -24,10 +24,10 @@ export class ProductService {
   }
 
   updateProduct(id: string, product: Product) {
-    return this._http.put<any>(`{this.baseUrl}/${id}`, product);
+    return this._http.put<any>(`${this.baseUrl}/${id}`, product);
   }
 
   deleteProduct(id: string) {
-    return this._http.delete<any>(`{this.baseUrl}/${id}`);
+    return this._http.delete<any>(`${this.baseUrl}/${id}`);
   }
 }

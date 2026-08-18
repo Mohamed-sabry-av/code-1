@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, Injectable, signal } from '@angular/core';
 import { Enviroment } from '../enviroments/enivroments';
-import { USER } from '../shared/models/user.model';
+import { USER, UsersResponse } from '../shared/models/user.model';
 import { finalize, tap } from 'rxjs';
 import { USERAUTH } from '../shared/models/auth';
 
@@ -13,7 +13,7 @@ export class AuthService {
   user = signal<USER | null>(JSON.parse(localStorage.getItem('user') ?? 'null'));
 
   isLoggedIn = computed(() => !!this.acessToken());
-  //   isAdmin = computed(() => this.user()?.role === 'admin');
+    isAdmin = computed(() => this.user()?.role === 'admin');
 
   constructor(private _http: HttpClient) {}
 
@@ -50,5 +50,9 @@ export class AuthService {
 
   signup(data: USERAUTH) {
     return this._http.post<any>(`${Enviroment.BASE_URL}/user`, data);
+  }
+
+  getAllUsers() {
+    return this._http.get<UsersResponse>(`${Enviroment.BASE_URL}/user`, { withCredentials: true });
   }
 }

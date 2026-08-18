@@ -16,7 +16,7 @@
       </div>
 
       <!-- Add Product -->
-      <button class="bg-blue-600 text-white px-5 py-3 rounded-lg
+      <button (click)="openAddModal()" class="bg-blue-600 text-white px-5 py-3 rounded-lg
                font-medium hover:bg-blue-700 transition">
         + Add Product
       </button>
@@ -48,6 +48,10 @@
                 Stock
               </th>
 
+              <th class="px-6 py-4 text-sm font-semibold text-gray-700">
+                Description
+              </th>
+
               <th class="px-6 py-4 text-sm font-semibold text-gray-700 text-right">
                 Actions
               </th>
@@ -66,8 +70,7 @@
               <td class="px-6 py-4">
                 <div class="flex items-center gap-3">
 
-                  <img src={{product.imageURL}} alt={{product.title}}
-                    class="w-12 h-12 rounded-lg object-cover">
+                  <img src={{product.imageURL}} alt={{product.title}} class="w-12 h-12 rounded-lg object-cover">
 
                   <span class="font-medium text-gray-800">
                     {{product.title}}
@@ -84,19 +87,22 @@
               <td class="px-6 py-4 text-gray-600">
                 {{product.stock}}
               </td>
+              <td class="px-6 py-4 text-gray-600">
+                {{product.desc}}
+              </td>
 
               <!-- Actions -->
               <td class="px-6 py-4">
 
                 <div class="flex justify-end gap-2">
 
-                  <button class="px-4 py-2 text-sm text-blue-600
+                  <button (click)="openEditModal(product)" class="px-4 py-2 text-sm text-blue-600
                            border border-blue-600 rounded-lg
                            hover:bg-blue-50 transition">
                     Edit
                   </button>
 
-                  <button class="px-4 py-2 text-sm text-red-600
+                  <button (click)="deleteProucts(product._id!)" class="px-4 py-2 text-sm text-red-600
                            border border-red-600 rounded-lg
                            hover:bg-red-50 transition">
                     Delete
@@ -105,7 +111,13 @@
                 </div>
 
               </td>
-
+              @if(showModal()){
+                <app-product-form 
+                  [product]="editingProduct()"
+                  (saved)="onFormSaved()"
+                  (cancelled)="showModal.set(false)"
+                ></app-product-form>
+              }
             </tr>
             }
 

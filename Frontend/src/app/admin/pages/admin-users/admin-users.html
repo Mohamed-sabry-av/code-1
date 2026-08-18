@@ -40,9 +40,9 @@
                 ID
               </th>
 
-              <th class="px-6 py-4 text-sm font-semibold text-gray-700">
+              <!-- <th class="px-6 py-4 text-sm font-semibold text-gray-700">
                 Name
-              </th>
+              </th> -->
 
               <th class="px-6 py-4 text-sm font-semibold text-gray-700">
                 Email
@@ -60,21 +60,22 @@
           </thead>
 
           <!-- Table Body -->
+          
           <tbody class="divide-y">
-
-            <!-- User 1 -->
-            <tr class="hover:bg-gray-50">
-
-              <td class="px-6 py-4 text-gray-600">
-                1
-              </td>
-
-              <td class="px-6 py-4 font-medium text-gray-800">
-                John Doe
-              </td>
-
-              <td class="px-6 py-4 text-gray-600">
-                john@example.com
+            
+            @for(user of users(); track user?._id) {
+               <tr class="hover:bg-gray-50">
+                 
+                 <td class="px-6 py-4 text-gray-600">
+                   {{ user?._id }}
+                  </td>
+                  
+                  <!-- <td class="px-6 py-4 font-medium text-gray-800">
+                    {{ user?.name }}
+                  </td> -->
+                  
+                  <td class="px-6 py-4 text-gray-600">
+                    {{ user?.email }}
               </td>
 
               <td class="px-6 py-4">
@@ -82,14 +83,14 @@
                   class="px-3 py-1 text-sm rounded-full
                          bg-blue-100 text-blue-700"
                 >
-                  Admin
+                  {{ user?.role }}
                 </span>
               </td>
-
+              
               <td class="px-6 py-4">
-
+                
                 <div class="flex justify-end gap-2">
-
+                  
                   <button
                     class="px-4 py-2 text-sm text-blue-600
                            border border-blue-600 rounded-lg
@@ -97,7 +98,7 @@
                   >
                     Edit
                   </button>
-
+                  
                   <button
                     class="px-4 py-2 text-sm text-red-600
                            border border-red-600 rounded-lg
@@ -105,12 +106,13 @@
                   >
                     Delete
                   </button>
-
+                  
                 </div>
-
+                
               </td>
-
+              
             </tr>
+          }
 
             <!-- User 2 -->
             <tr class="hover:bg-gray-50">

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../services/product';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../shared/models/product.model';
@@ -11,18 +11,23 @@ import { TruncatePipe } from '../../shared/pipes/truncate-pipe';
   templateUrl: './product-details.html',
   styleUrl: './product-details.css',
 })
-export class ProductDetails {
+export class ProductDetails implements OnInit {
   product = signal<Product | null>(null);
   date = new Date();
+  id: string | null;
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
   ) {
-    const id: string | null = this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
+  }
+  ngOnInit(): void {
+    this.getProduct(this.id);
+  }
 
+  getProduct(id: string | null) {
     this.productService.getProductByID(id).subscribe((response) => {
-      console.log(response);
       this.product.set(response.product);
     });
   }

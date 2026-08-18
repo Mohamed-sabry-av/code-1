@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { RouterLink } from '@angular/router';
 import { TruncatePipe } from '../../pipes/truncate-pipe';
@@ -9,6 +9,6 @@ import { TruncatePipe } from '../../pipes/truncate-pipe';
   templateUrl: './product-card.html',
   styleUrl: './product-card.css',
 })
-export class ProductCard {
+export class ProductCard{
   @Input({ required: true }) product!: Product;
 }

@@ -12,5 +12,11 @@ export const routes: Routes = [
   { path: 'product/:id', component: ProductDetails },
   { path: 'login', component: Login },
   { path: 'signup', component: Signup },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.routes').then((response) => response.ADMIN_ROUTES),
+  },
   { path: '**', component: NoFound },
 ];
+
+ 

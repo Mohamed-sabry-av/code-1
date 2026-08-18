@@ -1,0 +1,175 @@
+<section class="min-h-screen bg-gray-50 p-8">
+
+  <div class="max-w-7xl mx-auto">
+
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-6">
+
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">
+          Users
+        </h1>
+
+        <p class="text-gray-500 mt-1">
+          Manage system users
+        </p>
+      </div>
+
+      <!-- Add User -->
+      <button
+        class="bg-blue-600 text-white px-5 py-3 rounded-lg
+               font-medium hover:bg-blue-700 transition"
+      >
+        + Add User
+      </button>
+
+    </div>
+
+    <!-- Users Table -->
+    <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+
+      <div class="overflow-x-auto">
+
+        <table class="w-full text-left">
+
+          <!-- Table Header -->
+          <thead class="bg-gray-100 border-b">
+            <tr>
+
+              <th class="px-6 py-4 text-sm font-semibold text-gray-700">
+                ID
+              </th>
+
+              <th class="px-6 py-4 text-sm font-semibold text-gray-700">
+                Name
+              </th>
+
+              <th class="px-6 py-4 text-sm font-semibold text-gray-700">
+                Email
+              </th>
+
+              <th class="px-6 py-4 text-sm font-semibold text-gray-700">
+                Role
+              </th>
+
+              <th class="px-6 py-4 text-sm font-semibold text-gray-700 text-right">
+                Actions
+              </th>
+
+            </tr>
+          </thead>
+
+          <!-- Table Body -->
+          <tbody class="divide-y">
+
+            <!-- User 1 -->
+            <tr class="hover:bg-gray-50">
+
+              <td class="px-6 py-4 text-gray-600">
+                1
+              </td>
+
+              <td class="px-6 py-4 font-medium text-gray-800">
+                John Doe
+              </td>
+
+              <td class="px-6 py-4 text-gray-600">
+                john@example.com
+              </td>
+
+              <td class="px-6 py-4">
+                <span
+                  class="px-3 py-1 text-sm rounded-full
+                         bg-blue-100 text-blue-700"
+                >
+                  Admin
+                </span>
+              </td>
+
+              <td class="px-6 py-4">
+
+                <div class="flex justify-end gap-2">
+
+                  <button
+                    class="px-4 py-2 text-sm text-blue-600
+                           border border-blue-600 rounded-lg
+                           hover:bg-blue-50 transition"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    class="px-4 py-2 text-sm text-red-600
+                           border border-red-600 rounded-lg
+                           hover:bg-red-50 transition"
+                  >
+                    Delete
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+            <!-- User 2 -->
+            <tr class="hover:bg-gray-50">
+
+              <td class="px-6 py-4 text-gray-600">
+                2
+              </td>
+
+              <td class="px-6 py-4 font-medium text-gray-800">
+                Ahmed Ali
+              </td>
+
+              <td class="px-6 py-4 text-gray-600">
+                ahmed@example.com
+              </td>
+
+              <td class="px-6 py-4">
+                <span
+                  class="px-3 py-1 text-sm rounded-full
+                         bg-green-100 text-green-700"
+                >
+                  User
+                </span>
+              </td>
+
+              <td class="px-6 py-4">
+
+                <div class="flex justify-end gap-2">
+
+                  <button
+                    class="px-4 py-2 text-sm text-blue-600
+                           border border-blue-600 rounded-lg
+                           hover:bg-blue-50 transition"
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    class="px-4 py-2 text-sm text-red-600
+                           border border-red-600 rounded-lg
+                           hover:bg-red-50 transition"
+                  >
+                    Delete
+                  </button>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
